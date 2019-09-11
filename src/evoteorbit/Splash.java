@@ -5,8 +5,11 @@
  */
 package evoteorbit;
 
+import java.util.TimerTask;
+import java.util.Timer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
-
 /**
  *
  * @author Septian Ricky M
@@ -17,11 +20,9 @@ public class Splash extends javax.swing.JFrame {
      * Creates new form VisiMisi
      */
     private int duration;
-    public Splash(int d) {
+   public Splash() {
         initComponents();
         this.setLocationRelativeTo(null);
-        duration = d;
-        labelSplash.setVisible(true);
     }
     
     public void teleport(){
@@ -31,18 +32,22 @@ public class Splash extends javax.swing.JFrame {
     }
     
     public void loadScreen(){
-        for (int i = 0; i < 100; i++) {
-            try {
-                Thread.sleep(duration); 
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        }
+        new Timer().schedule(new TimerTask(){
+
+            int second = 0; 
+            @Override
+            public void run() {
+                System.out.print("Application will close in " + second++ + " seconds.");
+                if(second>5){ //setting durasi splash screen
+                    teleport();
+                    this.cancel();
+                }
+            }   
+        },0, 1000);
     }
     
     public void loadAndTeleport(){
         loadScreen();
-        teleport();
     }
 
     /**
@@ -116,7 +121,7 @@ public class Splash extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Splash(50).setVisible(true);
+                new Splash().setVisible(true);
             }
         });
     }

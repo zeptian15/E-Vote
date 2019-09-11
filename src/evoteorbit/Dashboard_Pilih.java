@@ -29,7 +29,7 @@ public class Dashboard_Pilih extends javax.swing.JFrame {
     
     public void endVoteSession(){
         this.dispose();
-        Splash splash = new Splash(50);
+        Splash splash = new Splash();
         splash.setVisible(true);
         splash.loadAndTeleport();
     }

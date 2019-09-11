@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +27,7 @@ public class HasilPilihan extends javax.swing.JFrame {
     public HasilPilihan() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setAlwaysOnTop(false);
         koneksi = KoneksiDB.connect();
         
         System.out.println("Paslon 1 : "+loadData(1)+" suara");
@@ -68,6 +71,7 @@ public class HasilPilihan extends javax.swing.JFrame {
         lbl_paslon3 = new javax.swing.JLabel();
         lbl_paslon2 = new javax.swing.JLabel();
         lbl_paslon1 = new javax.swing.JLabel();
+        btn_reset = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -94,6 +98,21 @@ public class HasilPilihan extends javax.swing.JFrame {
         lbl_paslon1.setText("1");
         jPanel1.add(lbl_paslon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 80, -1));
 
+        btn_reset.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_reset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ButtonReset.png"))); // NOI18N
+        btn_reset.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_resetMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_resetMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_resetMouseExited(evt);
+            }
+        });
+        jPanel1.add(btn_reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 450, 110, -1));
+
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Hasil.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -119,6 +138,41 @@ public class HasilPilihan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_resetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_resetMouseEntered
+        // Set Background
+        btn_reset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ButtonResetHover.png")));
+    }//GEN-LAST:event_btn_resetMouseEntered
+
+    private void btn_resetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_resetMouseExited
+        // Set Background
+        btn_reset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ButtonReset.png")));
+    }//GEN-LAST:event_btn_resetMouseExited
+
+    private void btn_resetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_resetMouseClicked
+        Connection koneksi = KoneksiDB.connect();
+            Statement stmt = null;
+        try {
+            stmt = koneksi.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(HasilPilihan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            String sql = "DELETE FROM vote";
+            int berhasil = 0;
+        try {
+            berhasil = stmt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(HasilPilihan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            if(berhasil == 1){                  
+//                JOptionPane.showMessageDialog(null,"DB Berhasil Di Reset");
+                System.out.println("Database Gagal di Delete");
+            }else{
+//                JOptionPane.showMessageDialog(null,"Terjadi Kesalahan...");
+                System.out.println("Database Berhasil di Delete");
+                this.dispose();
+            }
+    }//GEN-LAST:event_btn_resetMouseClicked
 
     /**
      * @param args the command line arguments
@@ -156,6 +210,7 @@ public class HasilPilihan extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btn_reset;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;

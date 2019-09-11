@@ -213,6 +213,7 @@ public class Dashboard extends javax.swing.JFrame {
         if(input.equals(password)){
             HasilPilihan hp = new HasilPilihan();
             hp.setVisible(true);
+            hp.setAlwaysOnTop(true);
             passwordPrompt.dispose();
         }else{
             passwordPrompt.setAlwaysOnTop(false);
