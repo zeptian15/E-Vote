@@ -6,6 +6,7 @@
 package evoteorbit;
 
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 /**
  *
@@ -16,28 +17,64 @@ public class Dashboard_Pilih extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard_Pilih
      */
-    private int idCalon = 0;
+    private int idCalon = 0,validationCount = 0;
+    private Voter voter;
+    private JDialog dialogButton;
     
-    public Dashboard_Pilih() {
+    public Dashboard_Pilih(Voter vote) {
         initComponents();
         this.setLocationRelativeTo(null);
+        voter = vote;
+    }
+    
+    public void endVoteSession(){
+        this.dispose();
+        Splash splash = new Splash();
+        splash.setVisible(true);
+    }
+    
+    public void konfirmasiThrice(){
+        int n = JOptionPane.showConfirmDialog(this,"Yakin Memilih Calon Ini?","Konfirmasi",
+    JOptionPane.YES_NO_OPTION); //0 untuk YES 1 untuk NO
+        System.out.println(n+" dan validasi "+validationCount);
+        if(n==0){
+            validationCount++;
+            if(validationCount<=2){
+            konfirmasiThrice();
+            }else{
+                System.out.println(validationCount+"-> validationCount");
+            }
+        }else if(n==1){
+            validationCount=0;
+            JOptionPane.showMessageDialog(null, "Silahkan Pertimbangkan Lagi");
+        }
     }
     
     public void VoterMemilih(int calon){
         idCalon = calon;
         switch(idCalon){
             case 1:
-                JOptionPane.showMessageDialog(null, "Kamu Memilih Helmy");
+                JOptionPane.showMessageDialog(null, "Kamu Telah Memilih Helmy");
+                voter.setPilihan(1);
+                voter.endVote();
+                voter.printPilihan();
                 break;
             case 2:
-                JOptionPane.showMessageDialog(null, "Kamu Memilih Daffa");
+                JOptionPane.showMessageDialog(null, "Kamu Telah Memilih Daffa");
+                voter.setPilihan(2);
+                voter.endVote();
+                voter.printPilihan();
                 break;
             case 3:
-                JOptionPane.showMessageDialog(null, "Kamu Memilih Ihsan");
+                JOptionPane.showMessageDialog(null, "Kamu Telah Memilih Ihsan");
+                voter.setPilihan(3);
+                voter.endVote();
+                voter.printPilihan();
                 break;
             default:
                 JOptionPane.showMessageDialog(null, "Id Tidak Ditemukan");
         }
+        endVoteSession();
     }
 
     /**
@@ -62,6 +99,7 @@ public class Dashboard_Pilih extends javax.swing.JFrame {
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(41, 61, 107));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -180,6 +218,7 @@ public class Dashboard_Pilih extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_visi_daffaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_visi_daffaMouseEntered
@@ -243,15 +282,24 @@ public class Dashboard_Pilih extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_visi_helmyMouseExited
 
     private void btn_pilih_helmyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pilih_helmyMouseClicked
-        VoterMemilih(1);
+        konfirmasiThrice();
+        if(validationCount==3){
+            VoterMemilih(1);
+        }
     }//GEN-LAST:event_btn_pilih_helmyMouseClicked
 
     private void btn_pilih_daffaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pilih_daffaMouseClicked
-        VoterMemilih(2);
+        konfirmasiThrice();
+        if(validationCount==3){
+            VoterMemilih(2);
+        }
     }//GEN-LAST:event_btn_pilih_daffaMouseClicked
 
     private void btn_pilih_ihsanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pilih_ihsanMouseClicked
-        VoterMemilih(3);
+        konfirmasiThrice();
+        if(validationCount==3){
+            VoterMemilih(3);
+        }
     }//GEN-LAST:event_btn_pilih_ihsanMouseClicked
 
     private void btn_visi_helmyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_visi_helmyMouseClicked
@@ -272,37 +320,37 @@ public class Dashboard_Pilih extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dashboard_Pilih.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dashboard_Pilih.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dashboard_Pilih.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dashboard_Pilih.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Dashboard_Pilih().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Dashboard_Pilih.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Dashboard_Pilih.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Dashboard_Pilih.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Dashboard_Pilih.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Dashboard_Pilih().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;

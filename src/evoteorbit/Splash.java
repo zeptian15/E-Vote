@@ -5,6 +5,8 @@
  */
 package evoteorbit;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author Septian Ricky M
@@ -17,6 +19,31 @@ public class Splash extends javax.swing.JFrame {
     public Splash() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+         loadScreen();
+    }
+    
+    public void teleport(){
+        Dashboard dash = new Dashboard();
+        dash.setVisible(true);
+        this.dispose();
+    }
+    
+    public void loadScreen(){
+        Thread t = new Thread(){
+          public void run(){
+            for (int x = 0; x <= 100; x+=10)
+            {
+              try
+              {
+                Thread.sleep(1000);
+              }
+              catch (InterruptedException e) {e.printStackTrace();}
+            }
+          }
+        };
+        t.start();
+        teleport();
     }
 
     /**
@@ -88,15 +115,16 @@ public class Splash extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Splash().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Splash().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
 }

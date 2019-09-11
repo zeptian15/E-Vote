@@ -3,12 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Septian%20Ricky%20M/Documents/NetBeansProjects/EVoteORBIT/src/evoteorbit/VisiMisiIhsan.java</file>
             <file>file:/C:/Users/Septian%20Ricky%20M/Documents/NetBeansProjects/EVoteORBIT/src/evoteorbit/Dashboard.java</file>
             <file>file:/C:/Users/Septian%20Ricky%20M/Documents/NetBeansProjects/EVoteORBIT/src/evoteorbit/VisiMisiDaffa.java</file>
             <file>file:/C:/Users/Septian%20Ricky%20M/Documents/NetBeansProjects/EVoteORBIT/src/evoteorbit/Splash.java</file>
             <file>file:/C:/Users/Septian%20Ricky%20M/Documents/NetBeansProjects/EVoteORBIT/src/evoteorbit/Dashboard_Pilih.java</file>
             <file>file:/C:/Users/Septian%20Ricky%20M/Documents/NetBeansProjects/EVoteORBIT/src/evoteorbit/VisiMisiHelmy.java</file>
+=======
+            <file>file:/D:/Project/Random/Java/E-Vote/src/evoteorbit/HasilPilihan.java</file>
+            <file>file:/D:/Project/Random/Java/E-Vote/src/evoteorbit/Splash.java</file>
+            <file>file:/D:/Project/Random/Java/E-Vote/src/evoteorbit/Dashboard_Pilih.java</file>
+            <file>file:/D:/Project/Random/Java/E-Vote/src/evoteorbit/KoneksiDB.java</file>
+            <file>file:/D:/Project/Random/Java/E-Vote/src/evoteorbit/Dashboard.java</file>
+            <file>file:/D:/Project/Random/Java/E-Vote/src/evoteorbit/Voter.java</file>
+>>>>>>> 9089f136da5888a864aa0a20b35554ffa66dcfc0
         </group>
     </open-files>
 </project-private>
