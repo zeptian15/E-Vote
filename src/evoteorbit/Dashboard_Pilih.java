@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class Dashboard_Pilih extends javax.swing.JFrame {
 
     /**
-     * Creates new form Dashboard_Pilih
+     * Creates new form Dashboard_Vote
      */
     private int idCalon = 0,validationCount = 0;
     private Voter voter;
@@ -29,8 +29,9 @@ public class Dashboard_Pilih extends javax.swing.JFrame {
     
     public void endVoteSession(){
         this.dispose();
-        Splash splash = new Splash();
+        Splash splash = new Splash(50);
         splash.setVisible(true);
+        splash.loadAndTeleport();
     }
     
     public void konfirmasiThrice(){
