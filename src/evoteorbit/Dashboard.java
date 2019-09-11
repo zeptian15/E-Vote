@@ -7,6 +7,7 @@ package evoteorbit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,6 +32,11 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        passwordPrompt = new javax.swing.JDialog();
+        panel_password = new javax.swing.JPanel();
+        lbl_password = new javax.swing.JLabel();
+        password_field1 = new javax.swing.JPasswordField();
+        btn_ok = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         Kata_dua = new javax.swing.JLabel();
         Kata_satu = new javax.swing.JLabel();
@@ -38,7 +44,69 @@ public class Dashboard extends javax.swing.JFrame {
         btn_masuk = new javax.swing.JLabel();
         Background = new javax.swing.JLabel();
 
+        passwordPrompt.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        passwordPrompt.setTitle("Authentication");
+        passwordPrompt.setAlwaysOnTop(true);
+        passwordPrompt.setModal(true);
+
+        panel_password.setPreferredSize(new java.awt.Dimension(200, 75));
+
+        lbl_password.setText("Masukkan Password");
+
+        btn_ok.setBackground(new java.awt.Color(244, 67, 54));
+        btn_ok.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        btn_ok.setForeground(new java.awt.Color(247, 248, 247));
+        btn_ok.setText("OK");
+        btn_ok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_okActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_passwordLayout = new javax.swing.GroupLayout(panel_password);
+        panel_password.setLayout(panel_passwordLayout);
+        panel_passwordLayout.setHorizontalGroup(
+            panel_passwordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_passwordLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panel_passwordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_password)
+                    .addGroup(panel_passwordLayout.createSequentialGroup()
+                        .addComponent(password_field1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_ok)))
+                .addGap(18, 18, 18))
+        );
+        panel_passwordLayout.setVerticalGroup(
+            panel_passwordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_passwordLayout.createSequentialGroup()
+                .addComponent(lbl_password)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panel_passwordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(password_field1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout passwordPromptLayout = new javax.swing.GroupLayout(passwordPrompt.getContentPane());
+        passwordPrompt.getContentPane().setLayout(passwordPromptLayout);
+        passwordPromptLayout.setHorizontalGroup(
+            passwordPromptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, passwordPromptLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panel_password, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        passwordPromptLayout.setVerticalGroup(
+            passwordPromptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, passwordPromptLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_password, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(41, 61, 107));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -97,6 +165,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_masukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_masukMouseEntered
@@ -111,13 +180,18 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void btn_masukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_masukMouseClicked
         System.out.println("Selamat Datang Zeptian");
-        Dashboard_Pilih pilih = new Dashboard_Pilih();
+        Voter korban = new Voter();
+        korban.startVote();
+        Dashboard_Pilih pilih = new Dashboard_Pilih(korban);
         pilih.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_masukMouseClicked
 
     private void btn_cekMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cekMouseClicked
         // TODO add your handling code here:
+        passwordPrompt.setLocationRelativeTo(null);
+        passwordPrompt.setSize(230,110);
+        passwordPrompt.setVisible(true);
     }//GEN-LAST:event_btn_cekMouseClicked
 
     private void btn_cekMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cekMouseEntered
@@ -129,6 +203,22 @@ public class Dashboard extends javax.swing.JFrame {
         // Set Background
         btn_cek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ButtonCekHasil.png")));
     }//GEN-LAST:event_btn_cekMouseExited
+
+    private void btn_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_okActionPerformed
+        // TODO add your handling code here:
+        String password = "admin";
+        char[] pass = password_field1.getPassword();
+        String input = new String(pass);
+        password_field1.setText("");
+        if(input.equals(password)){
+            HasilPilihan hp = new HasilPilihan();
+            hp.setVisible(true);
+            passwordPrompt.dispose();
+        }else{
+            passwordPrompt.setAlwaysOnTop(false);
+            JOptionPane.showMessageDialog(null,"Password Salah","Alert",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_okActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,6 +261,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel Kata_satu;
     private javax.swing.JLabel btn_cek;
     private javax.swing.JLabel btn_masuk;
+    private javax.swing.JButton btn_ok;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_password;
+    private javax.swing.JPanel panel_password;
+    private javax.swing.JDialog passwordPrompt;
+    private javax.swing.JPasswordField password_field1;
     // End of variables declaration//GEN-END:variables
 }
