@@ -24,11 +24,17 @@ public class HasilPilihan extends javax.swing.JFrame {
     
     public HasilPilihan() {
         initComponents();
+        this.setLocationRelativeTo(null);
         koneksi = KoneksiDB.connect();
         
         System.out.println("Paslon 1 : "+loadData(1)+" suara");
         System.out.println("Paslon 2 : "+loadData(2)+" suara");
         System.out.println("Paslon 3 : "+loadData(3)+" suara");
+        
+        // Set Hasil
+        lbl_paslon1.setText(String.valueOf(loadData(1)));
+        lbl_paslon2.setText(String.valueOf(loadData(2)));
+        lbl_paslon3.setText(String.valueOf(loadData(3)));
     }
     
     public int loadData(int id){
@@ -58,64 +64,57 @@ public class HasilPilihan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        lbl_paslon1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        lbl_paslon2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         lbl_paslon3 = new javax.swing.JLabel();
+        lbl_paslon2 = new javax.swing.JLabel();
+        lbl_paslon1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("JUMLAH VOTE");
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("Paslon 1");
+        lbl_paslon3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lbl_paslon3.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_paslon3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_paslon3.setText("3");
+        jPanel1.add(lbl_paslon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 190, 70, -1));
 
-        lbl_paslon1.setText("1");
-
-        jLabel4.setText("Paslon 2");
-
+        lbl_paslon2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lbl_paslon2.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_paslon2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_paslon2.setText("2");
+        jPanel1.add(lbl_paslon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 80, -1));
+
+        lbl_paslon1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lbl_paslon1.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_paslon1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_paslon1.setText("1");
+        jPanel1.add(lbl_paslon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 80, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Hasil.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel6.setText("Paslon 3");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        lbl_paslon3.setText("3");
+        jLabel1.setText("JUMLAH VOTE");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(lbl_paslon2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_paslon1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_paslon3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(33, 33, 33)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_paslon1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_paslon2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_paslon3)
-                .addContainerGap(115, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -158,9 +157,9 @@ public class HasilPilihan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_paslon1;
     private javax.swing.JLabel lbl_paslon2;
     private javax.swing.JLabel lbl_paslon3;
