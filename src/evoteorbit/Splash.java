@@ -16,11 +16,12 @@ public class Splash extends javax.swing.JFrame {
     /**
      * Creates new form VisiMisi
      */
-    public Splash() {
+    private int duration;
+    public Splash(int d) {
         initComponents();
         this.setLocationRelativeTo(null);
-        
-         loadScreen();
+        duration = d;
+        labelSplash.setVisible(true);
     }
     
     public void teleport(){
@@ -30,19 +31,17 @@ public class Splash extends javax.swing.JFrame {
     }
     
     public void loadScreen(){
-        Thread t = new Thread(){
-          public void run(){
-            for (int x = 0; x <= 100; x+=10)
-            {
-              try
-              {
-                Thread.sleep(1000);
-              }
-              catch (InterruptedException e) {e.printStackTrace();}
+        for (int i = 0; i < 100; i++) {
+            try {
+                Thread.sleep(duration); 
+            } catch (Exception e) {
+                e.getMessage();
             }
-          }
-        };
-        t.start();
+        }
+    }
+    
+    public void loadAndTeleport(){
+        loadScreen();
         teleport();
     }
 
@@ -56,15 +55,15 @@ public class Splash extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        labelSplash = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(41, 61, 107));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Splash.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        labelSplash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Splash.png"))); // NOI18N
+        jPanel1.add(labelSplash, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,16 +114,16 @@ public class Splash extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Splash().setVisible(true);
-//            }
-//        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Splash(50).setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelSplash;
     // End of variables declaration//GEN-END:variables
 
 }
